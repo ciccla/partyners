@@ -822,3 +822,8 @@
   transform: translateY(-2px);
   border-color: rgba(207,29,116,.30);
 }
+/* HERO: viewport mobile corretta (iOS/Android) */
+.hero,
+.hero-inner{
+  min-height: 100svh;
+}

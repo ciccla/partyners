@@ -1,5 +1,8 @@
 .pn-gallery{
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(207,29,116,.18), transparent 55%),
+    radial-gradient(circle at 82% 35%, rgba(207,29,116,.10), transparent 50%),
+    linear-gradient(to bottom, #07070b 0%, #09090f 45%, #07070b 100%);
 }
 
 /* HERO */
@@ -74,12 +77,6 @@
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
 
 }
-.pn-gallery-img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
 
 .pn-gallery-tabs{
   padding: 12px 0;
@@ -116,10 +113,6 @@
   opacity: .9;
 }
 
-/* Body */
-.pn-gallery-body{
-  padding: 28px 0 86px;
-}
 
 .pn-gallery-empty{
   border: 1px solid rgba(255,255,255,.10);
@@ -271,9 +264,15 @@
 }
 
 /* 2) Fade hero → barra: finisce ESATTAMENTE sul colore barra */
+/* Fade hero → barra (evita scalino / hairline) */
 .pn-gallery-hero::after{
-  bottom: 0;              /* era -1px: può creare una riga */
-  height: 180px;          /* un filo più lungo = transizione morbida */
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+  pointer-events: none;
   background: linear-gradient(
     to bottom,
     rgba(7,7,11,0) 0%,
@@ -281,6 +280,7 @@
     var(--pn-gallery-bar) 100%
   );
 }
+
 
 /* 3) Barra sticky: stesso colore della fine hero (coerenza totale) */
 .pn-gallery-tabsWrap{
@@ -303,53 +303,18 @@
    SFONDO GALLERY = CHI SIAMO (nero + pink glow)
    ========================================================= */
 
-/* Area che contiene le foto */
 .pn-gallery-body{
-  background:
-    radial-gradient(
-      circle at 18% 12%,
-      rgba(207,29,116,.18),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 82% 35%,
-      rgba(207,29,116,.10),
-      transparent 50%
-    ),
-    linear-gradient(
-      to bottom,
-      #07070b 0%,
-      #09090f 45%,
-      #07070b 100%
-    );
-
-  /* estendiamo bene il fondo sotto le immagini */
   padding: 40px 0 96px;
 }
-/* =========================================================
-   FULL-BLEED BACKGROUND (estende ai lati oltre il container)
-   ========================================================= */
 
-/* Se il contenuto sta in un container centrato, rendiamo il BODY della gallery full width */
-.pn-gallery-body{
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
 
-/* Il background che vuoi (nero + pink glow) applicato al full-bleed */
-.pn-gallery-body{
-  background:
-    radial-gradient(circle at 18% 12%, rgba(207,29,116,.18), transparent 55%),
-    radial-gradient(circle at 82% 35%, rgba(207,29,116,.10), transparent 50%),
-    linear-gradient(to bottom, #07070b 0%, #09090f 45%, #07070b 100%);
-}
-
-/* Manteniamo i contenuti (masonry) allineati come prima */
-.pn-gallery-body > *{
-  max-width: 1180px;       /* metti qui la stessa max-width del tuo container, se diversa */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
+@media (max-width: 560px){
+  .pn-gallery-tabs{
+    padding: 10px 0;
+    gap: 8px;
+  }
+  .pn-gallery-tab{
+    padding: 9px 10px;
+    font-size: 13px;
+  }
 }

@@ -182,3 +182,13 @@
 .events-hero__content{
   transform: translateY(-40px);
 }
+@media (max-width: 560px){
+  .events-hero__inner{
+    padding: 122px 0 44px;
+  }
+  .events-hero__ctas a,
+  .events-hero__ctas button{
+    width: 100%;
+    justify-content: center;
+  }
+}

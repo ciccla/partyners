@@ -192,3 +192,20 @@
 .pn-navbar:not(.is-scrolled) .pn-navlinks{
   gap: 14px; /* prima era 18px */
 }
+/* === MOBILE NAV: safer height + safe-area === */
+.pn-navbar__inner{
+  padding-top: env(safe-area-inset-top);
+}
+
+/* pannello mobile: usa dvh per i browser moderni */
+.pn-mobile.open{
+  inset: 86px 0 0 0;
+  height: calc(100dvh - 86px);
+}
+
+.pn-mobile__panel a,
+.pn-mobile__cta{
+  min-height: 44px;          /* tap target */
+  display: flex;
+  align-items: center;
+}

@@ -246,3 +246,8 @@ html:not(.pn-nav-scrolled) .hero-cta{
 .hero-subtitle{
   padding-left: 25px;   /* ← QUESTA È LA MANOPOLA */
 }
+/* HERO: viewport mobile corretta (iOS/Android) */
+.hero,
+.hero-inner{
+  min-height: 100svh;
+}
