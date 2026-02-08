@@ -143,7 +143,7 @@ export default function ContattiPage() {
 
           <a
             className="pn-cta pn-cta--ghost"
-            href="https://wa.me/39XXXXXXXXXX?text=Ciao%20Partyners!%20Vorrei%20info%20per%20un%20evento."
+            href="https://wa.me/393455253543?text=Ciao%20Partyners!%20Vorrei%20info%20per%20un%20evento."
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -209,30 +209,36 @@ export default function ContattiPage() {
       <section className="pn-container pn-contact__quick">
         <div className="pn-contact__quickGrid">
           <article className="pn-qcard">
-            <h3><FaMapMarkerAlt /> Dove siamo</h3>
-            <p>
-              <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener noreferrer">
-                Inserisci indirizzo / città
-              </a>
-              <br />
-              <span>Italia</span>
-            </p>
-          </article>
+  <h3><FaMapMarkerAlt /> Dove siamo</h3>
+  <p>
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Via%20Miccarielli%2043%2FA%2C%20San%20Gennaro%20Vesuviano%20NA"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      San Gennaro Vesuviano (NA) — Via Miccarielli n.43/A
+    </a>
+    <br />
+    <span>Italia</span>
+  </p>
+</article>
+
 
           <article className="pn-qcard pn-qcard--wa">
-            <h3><FaWhatsapp /> WhatsApp</h3>
-            <p>
-              <a
-                href="https://wa.me/39XXXXXXXXXX?text=Ciao%20Partyners!%20Vorrei%20info%20per%20un%20evento."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Scrivici su WhatsApp
-              </a>
-              <br />
-              <span>+39 XXX XXX XXXX</span>
-            </p>
-          </article>
+  <h3><FaWhatsapp /> WhatsApp</h3>
+  <p>
+    <a
+      href="https://wa.me/393455253543?text=Ciao%20Partyners!%20Vorrei%20info%20per%20un%20evento."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Scrivici su WhatsApp
+    </a>
+    <br />
+    <span>+39 345 525 3543</span>
+  </p>
+</article>
+
 
           <article className="pn-qcard">
             <h3><FaEnvelope /> Email</h3>
@@ -244,12 +250,13 @@ export default function ContattiPage() {
           </article>
 
           <article className="pn-qcard">
-            <h3><FaClock /> Orari</h3>
-            <p>
-              Lun–Ven 9:00–18:30 <br />
-              Sab 9:30–13:00
-            </p>
-          </article>
+  <h3><FaClock /> Disponibilità</h3>
+  <p>
+    Su appuntamento <br />
+    Risposta rapida su WhatsApp
+  </p>
+</article>
+
         </div>
       </section>
 
@@ -445,7 +452,7 @@ export default function ContattiPage() {
       <section className="pn-contact__map">
         <iframe
           title="Partyners - Mappa"
-          src="https://www.google.com/maps/embed?pb="
+          src="https://www.google.com/maps?q=Via%20Miccarielli%2043%2FA%2C%20San%20Gennaro%20Vesuviano%20NA&output=embed"
           loading="lazy"
           className="pn-contact__mapFrame"
         />

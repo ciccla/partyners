@@ -28,13 +28,28 @@ export default function Footer() {
           </p>
 
           <div className="pn-footer__social">
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
               <FaInstagram />
             </a>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" aria-label="TikTok">
+            <a
+              href="https://www.tiktok.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="TikTok"
+            >
               <FaTiktok />
             </a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+            >
               <FaFacebook />
             </a>
           </div>
@@ -46,14 +61,17 @@ export default function Footer() {
           <ul className="pn-footer__list">
             <li className="pn-footer__li">
               <FaMapMarkerAlt className="pn-footer__icon" />
-              <span>Inserisci indirizzo — Città (Provincia)</span>
+              <span>
+                San Gennaro Vesuviano (NA) — Via Miccarielli n.43/A
+              </span>
             </li>
 
             <li className="pn-footer__li">
               <FaPhoneAlt className="pn-footer__icon" />
-              <a className="pn-footer__link" href="tel:+390000000000">
-                +39 000 000 0000
+              <a className="pn-footer__link" href="tel:+393455253543">
+                +39 345 525 3543
               </a>
+              <span style={{ opacity: 0.7 }}> (WhatsApp)</span>
             </li>
 
             <li className="pn-footer__li">
@@ -76,24 +94,37 @@ export default function Footer() {
           <ul className="pn-footer__list">
             <li className="pn-footer__li">
               <FaBuilding className="pn-footer__icon" />
-              <strong>Partyners</strong>
+              <strong>Partyners di Teresa Tramite</strong>
             </li>
-            <li>P.IVA: Inserisci P.IVA</li>
-            <li>Sede legale: Inserisci sede legale</li>
+
+            <li className="pn-footer__li">
+              <span>P. IVA: 08407841215</span>
+            </li>
+
+            <li className="pn-footer__li">
+              <span>
+                Sede legale: San Gennaro Vesuviano (NA), Via Miccarielli n.43/A
+              </span>
+            </li>
 
             <li className="pn-footer__legal-links">
-              <a className="pn-footer__link" href="/privacy">Privacy Policy</a>
+              <a className="pn-footer__link" href="/privacy">
+                Privacy Policy
+              </a>
               <span className="pn-footer__sep">|</span>
-              <a className="pn-footer__link" href="/cookie-policy">Cookie Policy</a>
+              <a className="pn-footer__link" href="/cookie-policy">
+                Cookie Policy
+              </a>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="pn-footer__bottom">
-        © {new Date().getFullYear()} Partyners — Tutti i diritti riservati
+        © {new Date().getFullYear()} <strong>Partyners di Teresa Tramite</strong>{" "}
+        — Tutti i diritti riservati
         <br />
-        Eventi • Party • Experience
+        P. IVA 08407841215 — San Gennaro Vesuviano (NA), Via Miccarielli n.43/A
       </div>
     </footer>
   );
