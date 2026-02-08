@@ -39,18 +39,16 @@ export default function Navbar() {
     <>
       <header className={`pn-navbar ${solid ? "is-scrolled" : ""}`}>
         <div className="pn-navbar__inner">
-          <div className="pn-brand">
-            {/* logo navbar SOLO quando scrolled */}
-            {solid && (
-              <Link href="/" aria-label="Home">
-                <img
-                  src="/assets/logo/logo-nav.png"
-                  className="pn-brand__logo"
-                  alt="Partyners"
-                />
-              </Link>
-            )}
-          </div>
+         <div className="pn-brand">
+  <Link href="/" aria-label="Home" className="pn-brand__link">
+    <img
+      src="/assets/logo/logo-nav.png"
+      className="pn-brand__logo"
+      alt="Partyners"
+    />
+  </Link>
+</div>
+
 
           <nav className="pn-links" aria-label="Navigazione">
             <Link href="/eventi">Eventi</Link>
