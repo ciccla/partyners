@@ -4,8 +4,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const BRAND = {
   name: "Partyners",
-  from: process.env.MAIL_FROM || "Partyners <onboarding@resend.dev>",
-  to: process.env.MAIL_TO || "info@partyners.it",
   phone: process.env.BRAND_PHONE || "",
   whatsapp: process.env.BRAND_WHATSAPP || "",
   address: process.env.BRAND_ADDRESS || "",
@@ -57,7 +55,9 @@ function baseShell({ title, subtitle, content, footerNote }) {
           </div>
         </div>
         <div style="text-align:center;color:#7f8aa3;font-size:12px;margin:18px 0 6px 0">
-          © ${new Date().getFullYear()} ${BRAND.name} • ${esc(BRAND.address)} ${BRAND.phone ? `• ${esc(BRAND.phone)}` : ""}
+          © ${new Date().getFullYear()} ${BRAND.name} • ${esc(BRAND.address)} ${
+    BRAND.phone ? `• ${esc(BRAND.phone)}` : ""
+  }
         </div>
       </div>
     </div>
@@ -92,13 +92,16 @@ function emailToOffice(data) {
     title: `Nuova richiesta da ${data.nome || ""} ${data.cognome || ""}`,
     subtitle: "Hai ricevuto una nuova richiesta dal sito Partyners.",
     content: table,
-    footerNote: "Puoi rispondere direttamente usando l'email del cliente (reply-to impostato).",
+    footerNote:
+      "Puoi rispondere direttamente usando l'email del cliente (reply-to impostato).",
   });
 }
 
 function emailToCustomer(data) {
   const content = `
-    <p style="margin:0 0 14px 0;color:#ffd6ea;font-weight:800">Ciao ${esc(data.nome || "👋")},</p>
+    <p style="margin:0 0 14px 0;color:#ffd6ea;font-weight:800">Ciao ${esc(
+      data.nome || "👋"
+    )},</p>
     <p style="margin:0 0 18px 0;color:#b8c4d9">
       Grazie per aver contattato <strong style="color:#fff">${BRAND.name}</strong>!
       Abbiamo ricevuto la tua richiesta e ti ricontatteremo il prima possibile.
@@ -115,6 +118,29 @@ function emailToCustomer(data) {
 
 export async function POST(req) {
   try {
+    const from = process.env.MAIL_FROM;
+    const to = process.env.MAIL_TO;
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Missing RESEND_API_KEY" }),
+        { status: 500 }
+      );
+    }
+    if (!from) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Missing MAIL_FROM" }),
+        { status: 500 }
+      );
+    }
+    if (!to) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Missing MAIL_TO" }),
+        { status: 500 }
+      );
+    }
+
     const data = await req.json();
 
     // honeypot anti-spam
@@ -124,8 +150,8 @@ export async function POST(req) {
 
     // invio interno
     const adminPromise = resend.emails.send({
-      from: BRAND.from,
-      to: [BRAND.to],
+      from,
+      to: [to],
       subject: `📩 Nuova richiesta — Partyners`,
       html: emailToOffice(data),
       reply_to: data.email ? [data.email] : undefined,
@@ -134,7 +160,7 @@ export async function POST(req) {
     // conferma cliente
     const customerPromise = data.email
       ? resend.emails.send({
-          from: BRAND.from,
+          from,
           to: [data.email],
           subject: `✅ ${data.nome || ""}, richiesta ricevuta — Partyners`,
           html: emailToCustomer(data),
