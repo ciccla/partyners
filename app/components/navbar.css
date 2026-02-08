@@ -1,0 +1,194 @@
+:root{
+  --pn-pink: #c01765;
+}
+
+/* NAVBAR: floating sopra hero (nessuna barra) */
+.pn-navbar{
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  transition: background .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+/* glass SOLO quando scrolli */
+.pn-navbar.is-scrolled{
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+}
+
+.pn-navbar__inner{
+  width: min(1240px, calc(100% - 16%));
+  margin: 0 auto;
+  height: 86px;
+
+  display: grid;
+  gap: 18px;
+  align-items: center;
+
+  /* default: quando è scrolled (c’è il logo navbar) */
+  grid-template-columns: 320px 1fr auto;
+}
+
+/* HOME non scrolled: riserva più spazio a sinistra per NON sovrapporsi al logo hero */
+.pn-navbar:not(.is-scrolled) .pn-navbar__inner{
+  grid-template-columns: clamp(360px, 34vw, 600px) 1fr auto;
+}
+
+.pn-navbar:not(.is-scrolled) .pn-links{
+  justify-content: flex-end;
+}
+
+
+.pn-brand{
+  display:flex;
+  align-items:center;
+}
+
+.pn-brand__logo{
+  height: 70px;
+  width: auto;
+  opacity: 0.98;
+  filter: drop-shadow(0 18px 38px rgba(0,0,0,.35));
+}
+
+/* LINKS: bianchi su hero, scuri su glass */
+.pn-links{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+}
+
+.pn-links a{
+  text-decoration:none !important;
+  color: rgba(255,255,255,0.92);
+  font-weight: 750;
+  padding: 10px 12px;
+  border-radius: 999px;
+  transition: background .16s ease, transform .16s ease, color .16s ease;
+}
+
+.pn-links a:hover{
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+.pn-navbar.is-scrolled .pn-links a{
+  color: rgba(20,20,25,0.86);
+}
+
+.pn-navbar.is-scrolled .pn-links a:hover{
+  background: rgba(0,0,0,0.06);
+}
+
+/* CTA coerente col logo */
+.pn-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.pn-cta{
+  background: var(--pn-pink);
+  color: #fff !important;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 900;
+  text-decoration:none !important;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+}
+
+.pn-navbar.is-scrolled .pn-cta{
+  box-shadow: 0 10px 26px rgba(0,0,0,0.14);
+}
+
+.pn-burger{
+  display:none;
+  background:none;
+  border:0;
+  color: rgba(255,255,255,0.92);
+}
+
+.pn-navbar.is-scrolled .pn-burger{
+  color: rgba(20,20,25,0.86);
+}
+
+/* MOBILE */
+.pn-mobile{ display:none; }
+.pn-mobile.open{
+  display:block;
+  position: fixed;
+  inset: 86px 0 0 0;
+  z-index: 999;
+}
+
+.pn-mobile__backdrop{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  background: rgba(0,0,0,0.45);
+}
+
+.pn-mobile__panel{
+  position: relative;
+  z-index: 2;
+  margin: 14px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(14px);
+
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+}
+
+.pn-mobile__panel a{
+  text-decoration:none !important;
+  font-weight: 800;
+  color: rgba(20,20,25,0.92);
+}
+
+.pn-mobile__cta{
+  margin-top: 6px;
+  display:inline-flex;
+  justify-content:center;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: var(--pn-pink);
+  color:#fff !important;
+  font-weight: 900;
+}
+
+@media(max-width:980px){
+  .pn-links{ display:none; }
+  .pn-cta{ display:none; }
+  .pn-burger{ display:inline-flex; }
+}
+
+@media (min-width: 981px){
+  .pn-mobile{ display:none !important; }
+}
+/* Link sempre su una riga */
+.pn-navlink{
+  white-space: nowrap;
+}
+
+/* In top-state (navbar trasparente) riduciamo leggermente la spaziatura
+   così non va a capo "Chi siamo" */
+.pn-navbar:not(.is-scrolled) .pn-navlinks{
+  gap: 14px; /* prima era 18px */
+}

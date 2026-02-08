@@ -1,0 +1,355 @@
+.pn-gallery{
+  background: var(--bg);
+}
+
+/* HERO */
+.pn-gallery-hero{
+  position: relative;
+  min-height: clamp(520px, 78vh, 820px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+
+  background: url("/assets/gallery/gallery-hero.jpg") no-repeat;
+  background-size: cover;
+  background-position: center 35%;
+ 
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+
+
+
+.pn-gallery-hero__overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 70%, rgba(0,0,0,.45), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.20) 40%, rgba(0,0,0,.70));
+}
+
+.pn-gallery-hero__inner{
+  position: relative;
+  padding: 150px 0 64px;
+  max-width: 980px;
+}
+
+.pn-gallery-hero__kicker{
+  margin: 0 0 10px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .82;
+}
+
+.pn-gallery-hero__title{
+  margin: 0 0 14px;
+  font-size: clamp(34px, 4.2vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.pn-gallery-hero__title span{ color: var(--pink); }
+
+.pn-gallery-hero__subtitle{
+  margin: 0;
+  max-width: 62ch;
+  opacity: .86;
+  line-height: 1.55;
+}
+
+/* Tabs sticky */
+.pn-gallery-tabsWrap{
+  position: sticky;
+  top: 86px;
+  z-index: 50;
+
+  background: rgba(10,11,16,.85);   /* ✅ più scuro, coerente */
+  backdrop-filter: blur(16px);      /* ✅ un filo più premium */
+  -webkit-backdrop-filter: blur(16px);
+
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+
+}
+.pn-gallery-img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+
+.pn-gallery-tabs{
+  padding: 12px 0;
+  display: flex;
+  gap: 10px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.pn-gallery-tabs::-webkit-scrollbar{ display:none; }
+
+.pn-gallery-tab{
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.90);
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.pn-gallery-tab.is-active{
+  background: rgba(207,29,116,.18);
+  border-color: rgba(207,29,116,.45);
+}
+
+.pn-gallery-count{
+  font-size: 12px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  opacity: .9;
+}
+
+/* Body */
+.pn-gallery-body{
+  padding: 28px 0 86px;
+}
+
+.pn-gallery-empty{
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  padding: 18px;
+  border-radius: 18px;
+  opacity: .9;
+}
+
+/* Masonry */
+.pn-gallery-masonry{
+  column-count: 3;
+  column-gap: 14px;
+}
+@media (max-width: 1100px){ .pn-gallery-masonry{ column-count: 2; } }
+@media (max-width: 700px){ .pn-gallery-masonry{ column-count: 1; } }
+
+.pn-gallery-item{
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0 0 14px;
+  display: inline-block;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  position: relative;
+}
+
+.pn-gallery-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .35s ease, filter .35s ease;
+  filter: saturate(1.05) contrast(1.04);
+}
+
+.pn-gallery-itemShade{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.12), rgba(0,0,0,0) 55%);
+  pointer-events:none;
+}
+
+.pn-gallery-item:hover .pn-gallery-img{
+  transform: scale(1.07);
+  filter: saturate(1.12) contrast(1.08);
+}
+
+/* Lightbox */
+.pn-lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.pn-lightbox-backdrop{
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.pn-lightbox-panel{
+  position: relative;
+  width: min(1180px, 100%);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(15,15,20,.92);
+  box-shadow: 0 30px 110px rgba(0,0,0,.65);
+}
+
+.pn-lightbox-close{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.pn-lightbox-imgWrap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: rgba(255,255,255,.03);
+}
+
+.pn-lightbox-img{
+  object-fit: contain;
+}
+
+.pn-lightbox-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.pn-lightbox-nav:disabled{ opacity: .35; cursor: not-allowed; }
+.pn-lightbox-nav--left{ left: 12px; }
+.pn-lightbox-nav--right{ right: 12px; }
+
+.pn-lightbox-footer{
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  opacity: .82;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+/* =========================================================
+   FIX STACCO HERO -> TABS (colore unico + fade coerente)
+   ========================================================= */
+
+:root{
+  /* colore reale della barra (unificato) */
+  --pn-gallery-bar: rgba(7,7,11,.92);
+  --pn-gallery-bar-solid: rgb(7,7,11);
+}
+
+/* 1) Hero: togliamo il border che “segna” lo stacco */
+.pn-gallery-hero{
+  border-bottom: 0;
+}
+
+/* 2) Fade hero → barra: finisce ESATTAMENTE sul colore barra */
+.pn-gallery-hero::after{
+  bottom: 0;              /* era -1px: può creare una riga */
+  height: 180px;          /* un filo più lungo = transizione morbida */
+  background: linear-gradient(
+    to bottom,
+    rgba(7,7,11,0) 0%,
+    rgba(7,7,11,.55) 45%,
+    var(--pn-gallery-bar) 100%
+  );
+}
+
+/* 3) Barra sticky: stesso colore della fine hero (coerenza totale) */
+.pn-gallery-tabsWrap{
+  background: var(--pn-gallery-bar);
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+
+  /* se vuoi ancora “premium”, ok il blur, ma con fondo coerente */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* 4) Anti-“hairline”: evita righe sottili tra sezioni su alcuni browser */
+.pn-gallery-hero,
+.pn-gallery-tabsWrap{
+  transform: translateZ(0);
+}
+/* =========================================================
+   SFONDO GALLERY = CHI SIAMO (nero + pink glow)
+   ========================================================= */
+
+/* Area che contiene le foto */
+.pn-gallery-body{
+  background:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(207,29,116,.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 82% 35%,
+      rgba(207,29,116,.10),
+      transparent 50%
+    ),
+    linear-gradient(
+      to bottom,
+      #07070b 0%,
+      #09090f 45%,
+      #07070b 100%
+    );
+
+  /* estendiamo bene il fondo sotto le immagini */
+  padding: 40px 0 96px;
+}
+/* =========================================================
+   FULL-BLEED BACKGROUND (estende ai lati oltre il container)
+   ========================================================= */
+
+/* Se il contenuto sta in un container centrato, rendiamo il BODY della gallery full width */
+.pn-gallery-body{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Il background che vuoi (nero + pink glow) applicato al full-bleed */
+.pn-gallery-body{
+  background:
+    radial-gradient(circle at 18% 12%, rgba(207,29,116,.18), transparent 55%),
+    radial-gradient(circle at 82% 35%, rgba(207,29,116,.10), transparent 50%),
+    linear-gradient(to bottom, #07070b 0%, #09090f 45%, #07070b 100%);
+}
+
+/* Manteniamo i contenuti (masonry) allineati come prima */
+.pn-gallery-body > *{
+  max-width: 1180px;       /* metti qui la stessa max-width del tuo container, se diversa */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}

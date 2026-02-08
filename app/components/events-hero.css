@@ -1,0 +1,184 @@
+.events-hero{
+  position: relative;
+  min-height: clamp(520px, 78vh, 820px);
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+}
+
+/* background immagine */
+.events-hero__bg{
+  position: absolute;
+  inset: 0;
+  background: url("/assets/events/eventi-hero.jpg") no-repeat;
+  background-size: cover;
+  background-position: center 35%;
+  transform: scale(1.02);
+}
+
+/* overlay leggibilità testo */
+.events-hero__overlay{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 70%, rgba(0,0,0,.35), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.10) 40%, rgba(0,0,0,.55));
+}
+
+/* contenuto */
+.events-hero__inner{
+  position: relative;
+  padding: 140px 0 64px; /* spazio per navbar fixed + respiro */
+  max-width: 980px;
+}
+
+.events-hero__kicker{
+  margin: 0 0 10px;
+  font-weight: 850;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .85;
+  text-shadow: 0 16px 30px rgba(0,0,0,.35);
+}
+
+.events-hero__title{
+  margin: 0 0 14px;
+  font-size: clamp(34px, 4.2vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-shadow: 0 18px 34px rgba(0,0,0,.45);
+}
+
+.events-hero__title span{
+  color: var(--pink);
+}
+
+.events-hero__subtitle{
+  margin: 0;
+  max-width: 62ch;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.55;
+  opacity: .88;
+  text-shadow: 0 14px 28px rgba(0,0,0,.40);
+}
+
+.events-hero__ctas{
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Variante ghost coerente */
+.pn-btn--ghost{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.18);
+}
+
+@media (max-width: 900px){
+  .events-hero__inner{ padding: 126px 0 52px; }
+}
+
+@media (max-width: 560px){
+  .events-hero__bg{ background-position: center 30%; }
+}
+
+/* ✅ continuità Hero -> Showcase (come Gallery) */
+.events-hero::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height: 170px;
+  pointer-events:none;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,7,11,0) 0%,
+    rgba(7,7,11,.55) 55%,
+    rgba(7,7,11,1) 100%
+  );
+}
+/* =========================================================
+   CTA HERO EVENTI — SLIM / REFINED
+   ========================================================= */
+
+.events-hero__ctas{
+  display: flex;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.events-hero .pn-btn{
+  padding: 12px 24px;              /* ⬅️ meno ciccia */
+  border-radius: 999px;
+
+  font-weight: 800;                /* ⬅️ leggermente meno bold */
+  font-size: 16px;                 /* ⬅️ più raffinato */
+  letter-spacing: .25px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    filter .15s ease;
+}
+
+/* CTA PRINCIPALE */
+.events-hero .pn-btn--primary{
+  background: linear-gradient(
+    to bottom,
+    #d72a7b,
+    #b91e66
+  );
+  color: #fff;
+
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.08);
+}
+
+.events-hero .pn-btn--primary:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+/* CTA SECONDARIA */
+.events-hero .pn-btn--ghost{
+  background: rgba(0,0,0,.55);
+  color: rgba(255,255,255,.92);
+
+  border: 1px solid rgba(255,255,255,.26);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.40);
+}
+
+.events-hero .pn-btn--ghost:hover{
+  transform: translateY(-1px);
+  background: rgba(0,0,0,.68);
+}
+
+/* =========================================================
+   CTA sopra la dissolvenza scura (alza il contenuto)
+   ========================================================= */
+
+/* alza il contenuto della hero (testo + CTA) */
+.events-hero__inner{
+  padding-bottom: 140px !important; /* più aria prima della dissolvenza */
+}
+
+/* se la tua hero usa grid align-items:end, questa è la spinta “vera” */
+.events-hero__content{
+  transform: translateY(-40px);
+}

@@ -1,0 +1,248 @@
+/* =========================================================
+   HERO — CLEAN (static badge + harmonic layout)
+   - Full width hero, left aligned with responsive padding
+   - Logo: top -50 desktop, top 8 mobile
+   - Badge: static 1x, no scroll animation
+   - CTA: ordered and responsive with clamp()
+   ========================================================= */
+
+/* ---------- Base hero ---------- */
+.hero{
+  position: relative;
+  min-height: 100vh;
+  background: url("/assets/hero/hero-bg.png") no-repeat;
+  background-size: cover;
+  background-position: 55% 35%;
+  overflow: hidden;
+}
+
+/* overlay */
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 72%, rgba(0,0,0,.22), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.20), rgba(0,0,0,.06) 46%, rgba(0,0,0,.38));
+}
+
+/* ---------- Layout (FULL WIDTH + responsive padding) ---------- */
+.hero-inner{
+  position: relative;
+  width: 100%;
+  margin: 0;
+  min-height: 100vh;
+
+  /* Device-based left alignment */
+  --hero-pad-x: clamp(2px, 0vw, 72px);
+
+  padding: 120px var(--hero-pad-x) 70px;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+}
+
+/* ---------- Logo ---------- */
+.hero-logo{
+  position: absolute;
+  left: var(--hero-pad-x);
+  top: -50px;
+
+  width: clamp(360px, 48vw, 720px);
+  max-width: 100%;
+  height: auto;
+
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.35));
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+/* keep navbar scroll effect for logo only */
+.pn-nav-scrolled .hero-logo{
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* ---------- Left column (static content) ---------- */
+.hero-left{
+  position: relative;
+}
+
+.hero-copy{
+  width: min(680px, 95%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+/* Badge: static 1x, responsive width */
+.hero-badge{
+  position: relative;
+  z-index: 5;
+  width: clamp(260px, 34vw, 520px);
+  margin: 0 0 clamp(6px, 1vw, 12px);
+}
+
+.hero-badge img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,.28));
+}
+
+/* Title */
+.hero-title{
+  margin: 0;
+  max-width: 26ch;
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+
+  font-size: clamp(34px, 3.2vw, 56px);
+  text-shadow: 0 14px 34px rgba(0,0,0,.45);
+}
+
+/* Subtitle */
+.hero-subtitle{
+  margin: 0;
+  max-width: 62ch;
+  opacity: .92;
+
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.55;
+  text-shadow: 0 10px 26px rgba(0,0,0,.35);
+}
+
+/* CTA */
+.hero-cta{
+  margin-top: clamp(10px, 1.6vw, 18px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn-primary{
+  background: #cf1d74;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 18px 30px rgba(0,0,0,.22);
+
+  height: clamp(44px, 4.6vw, 52px);
+  padding: 0 clamp(18px, 2.2vw, 26px);
+  border-radius: 999px;
+
+  font-weight: 800;
+  font-size: clamp(15px, 1.05vw, 16px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-soft{
+  background: #f6d7e5;
+  color: #b91666;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 18px 30px rgba(0,0,0,.22);
+
+  height: clamp(44px, 4.6vw, 52px);
+  padding: 0 clamp(18px, 2.2vw, 26px);
+  border-radius: 999px;
+
+  font-weight: 800;
+  font-size: clamp(15px, 1.05vw, 16px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Right column (mascot) ---------- */
+.hero-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.hero-mascot{
+  width: min(520px, 44vw);
+  height: auto;
+  transform: translateY(28px);
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,.35));
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .hero-inner{
+    grid-template-columns: 1fr;
+
+    /* tighter padding on mobile */
+    --hero-pad-x: clamp(12px, 4vw, 22px);
+
+    padding: 110px var(--hero-pad-x) 60px;
+  }
+
+  .hero-right{ display: none; }
+
+  .hero-logo{
+    top: 8px;
+    width: clamp(260px, 78vw, 420px);
+    max-width: 400px;
+  }
+
+  /* keep CTA readable on small screens */
+  .hero-copy{ width: 100%; }
+  .hero-title{ max-width: 18ch; }
+}
+
+@media (max-width: 560px){
+  .btn-primary,
+  .btn-soft{
+    width: 100%;
+  }
+
+}
+/* =========================================================
+   HOME CTA — ALIGN + TOP STATE SPACING (override)
+   Incolla in fondo a hero.css
+   ========================================================= */
+
+/* 1) CTA: micro-allineamento a destra (ottico) */
+.hero-cta{
+  padding-left: clamp(25px, 0.7vw, 12px);
+}
+
+/* 2) Prima dello scroll: CTA più in basso (per far “respirare” il titolo) */
+html:not(.pn-nav-scrolled) .hero-cta{
+  margin-top: clamp(22px, 2.4vw, 34px);
+}
+
+/* Dopo lo scroll: torna più compatta (come ora) */
+.pn-nav-scrolled .hero-cta{
+  margin-top: clamp(10px, 1.6vw, 18px);
+}
+
+/* Mobile: meno padding e margine più contenuto */
+@media (max-width: 900px){
+  .hero-cta{
+    padding-left: clamp(2px, 0.6vw, 6px);
+  }
+
+  html:not(.pn-nav-scrolled) .hero-cta{
+    margin-top: clamp(16px, 3vw, 24px);
+  }
+}
+/* ===============================
+   HERO TEXT ALIGNMENT (ONLY TEXT)
+   =============================== */
+
+.hero-title,
+.hero-subtitle{
+  padding-left: 25px;   /* ← QUESTA È LA MANOPOLA */
+}
