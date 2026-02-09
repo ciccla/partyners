@@ -20,6 +20,8 @@ export default function Navbar() {
       // comunica allo HTML che la navbar è "attiva"
       document.documentElement.classList.toggle("pn-nav-scrolled", sc);
     };
+      // 👇 QUESTA RIGA
+   document.body.setAttribute("data-path", pathname);
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

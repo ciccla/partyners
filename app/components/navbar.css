@@ -328,3 +328,11 @@
   transform: translateY(0);
   opacity: 1;
 }
+/* ===============================
+   HOME TOP-STATE: logo navbar nascosto
+   =============================== */
+body[data-path="/"] .pn-navbar:not(.is-scrolled) .pn-brand__logo{
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  pointer-events: none;
+}
