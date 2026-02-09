@@ -357,3 +357,8 @@ html:not(.pn-nav-scrolled) .hero-cta{
     background-position: 86% 32% !important;
   }
 }
+@media (max-width: 900px){
+  .hero{
+    filter: saturate(1.05) contrast(1.02);
+  }
+}
