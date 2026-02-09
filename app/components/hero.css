@@ -251,3 +251,33 @@ html:not(.pn-nav-scrolled) .hero-cta{
 .hero-inner{
   min-height: 100svh;
 }
+/* =========================================
+   MOBILE HERO: re-center + no offset testo
+   Incolla in fondo a hero.css
+   ========================================= */
+
+@media (max-width: 900px){
+  /* 1) inquadra più al centro (non troppo a destra) */
+  .hero{
+    background-position: 60% 32% !important;
+  }
+
+  /* 2) su mobile NON vogliamo offset a sinistra del testo */
+  .hero-title,
+  .hero-subtitle{
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 560px){
+  /* piccoli schermi: ancora più centrato + meno crop */
+  .hero{
+    background-position: 58% 30% !important;
+    background-size: 108% auto !important;
+  }
+}
+@media (max-width: 900px){
+  .hero-cta{
+    padding-left: 0 !important;
+  }
+}
