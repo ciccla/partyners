@@ -342,7 +342,7 @@ html:not(.pn-nav-scrolled) .hero-cta{
   .hero-overlay{
     background:
       linear-gradient(90deg,
-        rgba(0,0,0,.38) 0%,
+        rgba(0,0,0,.22) 0%,
         rgba(0,0,0,.24) 42%,
         rgba(0,0,0,.10) 75%,
         rgba(0,0,0,.04) 100%
