@@ -494,6 +494,6 @@ html:not(.pn-nav-scrolled) .hero-cta{
 
 @media (max-width: 900px){
   .hero-badge{
-    margin-left: -12px; /* 👈 MANOPOLA */
+    margin-left: -26px; /* 👈 MANOPOLA */
   }
 }
