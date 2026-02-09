@@ -269,15 +269,51 @@ html:not(.pn-nav-scrolled) .hero-cta{
   }
 }
 
-@media (max-width: 560px){
-  /* piccoli schermi: ancora più centrato + meno crop */
+/* =========================================
+   HERO MOBILE: cover + focus mascotte + testo salvo
+   ========================================= */
+
+@media (max-width: 900px){
   .hero{
-    background-position: 58% 30% !important;
-    background-size: 108% auto !important;
+    /* torna “piena” e d’impatto */
+    background-size: cover !important;
+
+    /* focus verso mascotte */
+    background-position: 74% 32% !important;
+  }
+
+  /* su mobile niente offset laterale testo */
+  .hero-title,
+  .hero-subtitle{
+    padding-left: 0 !important;
   }
 }
+
+@media (max-width: 560px){
+  .hero{
+    /* leggero zoom (non rimpicciolita) */
+    background-size: 130% !important;
+
+    /* ancora più focus mascotte su schermi piccoli */
+    background-position: 78% 30% !important;
+  }
+}
+
 @media (max-width: 900px){
   .hero-cta{
     padding-left: 0 !important;
+  }
+}
+@media (max-width: 900px){
+  .hero-overlay{
+    /* più scuro a sinistra (dove stanno testo+CTA), più leggero a destra (mascotte) */
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,.70) 0%,
+        rgba(0,0,0,.42) 42%,
+        rgba(0,0,0,.18) 72%,
+        rgba(0,0,0,.10) 100%
+      ),
+      radial-gradient(circle at 22% 70%, rgba(0,0,0,.35), transparent 55%) !important;
   }
 }
