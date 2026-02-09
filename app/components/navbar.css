@@ -258,9 +258,10 @@
   left: 12px;
   right: 12px;
 
-  /* top = navbar mobile 70px + safe area */
-  top: calc(70px + env(safe-area-inset-top) + 10px);
-  bottom: 12px;
+  /* ✅ panel proporzionato ai contenuti */
+  height: fit-content;
+  max-height: calc(100svh - (70px + env(safe-area-inset-top) + 24px));
+  overflow: auto; /* scroll solo se supera max-height */
 
   overflow: auto;
 
@@ -280,11 +281,11 @@
   -webkit-backdrop-filter: blur(14px);
 
   border-radius: 18px;
-  padding: 18px;
+  padding: 14px;
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .pn-mobile__panel a{
