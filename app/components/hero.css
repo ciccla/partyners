@@ -468,3 +468,23 @@ html:not(.pn-nav-scrolled) .hero-cta{
     transition: none;
   }
 }
+/* =========================================
+   HERO BADGE PNG — più grande su mobile
+   ========================================= */
+
+@media (max-width: 900px){
+  .hero-badge{
+    width: clamp(320px, 86vw, 520px) !important;
+    margin-bottom: 14px !important;
+  }
+
+  .hero-badge img{
+    filter: drop-shadow(0 12px 22px rgba(0,0,0,.22)) !important;
+  }
+}
+
+@media (max-width: 560px){
+  .hero-badge{
+    width: 92vw !important;   /* quasi full width */
+  }
+}
