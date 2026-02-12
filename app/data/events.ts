@@ -13,7 +13,7 @@ export type EventCategory = {
 export const EVENT_CATEGORIES: EventCategory[] = [
   {
     id: "eventi-privati",
-    title: "Eventi Privati",
+    title: "Cerimonie",
     tagline: "Momenti di vita, curati in ogni dettaglio.",
     cover: "/assets/events/eventi-privati/cover.jpg",
     gallery: [
@@ -33,7 +33,7 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "Laurea",
       "Anniversari",
     ],
-    highlights: ["Concept", "Location", "Allestimenti", "Regia evento"],
+    highlights: ["Matrimonio", "Comunione", "Cresima", "Laurea", "Anniversari"],
     description:
       "Eventi personali e familiari progettati su misura: stile, organizzazione e coordinamento completo, dal concept al giorno dell’evento.",
   },
@@ -57,7 +57,7 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "50° Compleanno",
       "Party Adulti",
     ],
-    highlights: ["Musica", "Drink & food", "Allestimento", "Timing perfetto"],
+    highlights: ["Musica", "Drink & food", "Allestimento", "18° Compleanno", "feste a tema"],
     description:
       "Feste di compleanno e party per ogni età: mood, musica, setup e gestione completa. Tu scegli lo stile, noi realizziamo l’esperienza.",
   },
@@ -81,7 +81,7 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "Lancio prodotto",
       "Feste aziendali",
     ],
-    highlights: ["Branding", "Regia", "Audio/Luci", "Experience"],
+    highlights: ["Eventi Aziendali", "Inaugurazioni", "Audio/Luci", "Eventi Promozionali", "Gadget personalizzati"],
     description:
       "Eventi corporate e promozionali con impatto: organizzazione, regia e atmosfera giusta per coinvolgere clienti, team e ospiti.",
   },
@@ -102,14 +102,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "Eventi per Famiglie",
       "Eventi a Tema Bambini",
     ],
-    highlights: ["Format", "Sicurezza", "Coinvolgimento", "Tema"],
+    highlights: ["Format", "Sicurezza", "Coinvolgimento", "Eventi per Famiglie",],
     description:
       "Eventi dedicati ai più piccoli per scuole, comuni, famiglie e spazi commerciali: format, tema e gestione attività in modo ordinato e divertente.",
   },
   {
     id: "animazione",
-    title: "Animazione",
-    tagline: "Il pezzo che accende davvero la festa.",
+    title: "Animazione e Spettacoli",
+    tagline: "Performance che trasformano un evento in esperienza.",
     cover: "/assets/events/animazione/cover.jpg",
     gallery: [
       "/assets/events/animazione/1.jpg",
@@ -126,7 +126,7 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "Animazione Bambini",
       "Animazione Adulti",
     ],
-    highlights: ["Show", "Staff", "Interazione", "Setup rapido"],
+    highlights: ["Mascotte", "Spettacoli", "Interazione", "Animazione","Gonfiabili"],
     description:
       "Scegli l’intrattenimento giusto per il tuo evento: mascotte, spettacoli, gonfiabili, laboratori e animazione calibrata su pubblico e contesto.",
   },
@@ -149,7 +149,7 @@ export const EVENT_CATEGORIES: EventCategory[] = [
       "Service Audio & Luci",
       "Decorazioni",
     ],
-    highlights: ["Design", "Materiali", "Montaggio", "Dettagli premium"],
+    highlights: ["Balloon Art", "Materiali", "Noleggio Attrezzature", "Service Audio & Luci"],
     description:
       "Allestimenti e servizi anche singoli: balloon art, scenografie, decorazioni e noleggi. Perfetto se vuoi elevare un evento già esistente.",
   },
