@@ -13,9 +13,13 @@ export default function EventCard({
     <button type="button" className="pn-card" onClick={onOpen}>
       <div
         className="pn-card__media"
-        style={{ backgroundImage: `url(${item.cover})` }}
+        // ✅ supporta il nuovo CSS "portrait safe" (blur bg + img contain)
+        style={{ ["--pn-card-img" as any]: `url(${item.cover})` }}
         aria-hidden="true"
-      />
+      >
+        <img className="pn-card__img" src={item.cover} alt="" loading="lazy" />
+      </div>
+
       <div className="pn-card__shade" aria-hidden="true" />
 
       <div className="pn-card__body">

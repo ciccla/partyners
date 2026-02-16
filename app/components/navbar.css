@@ -337,3 +337,43 @@ body[data-path="/"] .pn-navbar:not(.is-scrolled) .pn-brand__logo{
   transform: translateY(-8px) scale(0.98);
   pointer-events: none;
 }
+/* ===============================
+   FIX MOBILE MENU (iOS safe-area)
+   - il menu copre tutto lo schermo
+   - il pannello parte sotto la navbar
+   =============================== */
+
+:root{
+  --pn-nav-h: 86px; /* altezza navbar */
+}
+
+/* il contenitore menu copre tutto (non parte più da 86px) */
+.pn-mobile.open{
+  display: block;
+  position: fixed;
+  inset: 0;                 /* ✅ full screen */
+  z-index: 2000;            /* ✅ sopra tutto (anche navbar) */
+}
+
+/* backdrop full screen */
+.pn-mobile__backdrop{
+  position: absolute;
+  inset: 0;                 /* ✅ full screen */
+}
+
+/* pannello spinto sotto la navbar + safe area */
+.pn-mobile__panel{
+  position: relative;
+  z-index: 2;
+
+  margin: 14px;
+  margin-top: calc(
+    var(--pn-nav-h) + env(safe-area-inset-top) + 10px
+  );                        /* ✅ non si nasconde più "Eventi" */
+
+  max-height: calc(
+    100dvh - (var(--pn-nav-h) + env(safe-area-inset-top) + 28px)
+  );
+  overflow: auto;           /* ✅ se lista lunga, scrolla */
+  -webkit-overflow-scrolling: touch;
+}

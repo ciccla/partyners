@@ -740,3 +740,22 @@ main{ padding-top: 0; }
   transform: scale(1.06);
   filter: saturate(1.08) contrast(1.05);
 }
+/* ===== CARD COVER (griglia eventi) – CLASSIC COVER (orizzontale) ===== */
+.pn-card__media{
+  position: absolute;
+  inset: 0;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: rgba(255,255,255,0.03);
+  filter: saturate(1.05) contrast(1.05);
+  transform: scale(1.02);
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.pn-card:hover .pn-card__media{
+  transform: scale(1.08);
+  filter: saturate(1.14) contrast(1.10);
+}

@@ -39,9 +39,16 @@ export default function EventModal({
 
   if (!item) return null;
 
+  // ✅ immagine corrente (gallery -> fallback cover)
+  const current = gallery[index] || item.cover;
+
   return (
     <div className="pn-modal" role="dialog" aria-modal="true">
-      <button className="pn-modal__backdrop" onClick={onClose} aria-label="Chiudi" />
+      <button
+        className="pn-modal__backdrop"
+        onClick={onClose}
+        aria-label="Chiudi"
+      />
 
       <div className="pn-modal__panel">
         <button className="pn-modal__close" onClick={onClose} aria-label="Chiudi">
@@ -52,9 +59,12 @@ export default function EventModal({
         <div className="pn-modal__gallery">
           <div
             className="pn-modal__hero"
-            style={{ backgroundImage: `url(${gallery[index] || item.cover})` }}
+            // ✅ supporta il nuovo CSS "portrait safe" (blur bg + img contain)
+            style={{ ["--pn-modal-img" as any]: `url(${current})` }}
             aria-label={`Immagine ${index + 1} di ${gallery.length}`}
-          />
+          >
+            <img className="pn-modal__heroImg" src={current} alt="" />
+          </div>
 
           <div className="pn-modal__nav">
             <button
@@ -103,20 +113,19 @@ export default function EventModal({
             ))}
           </div>
 
-<div className="pn-modal__cta">
-  <Link
-    className="pn-btn pn-btn--primary"
-    href={`/contatti?tipoEvento=${encodeURIComponent(item.title)}`}
-    onClick={onClose}
-  >
-    Richiedi info
-  </Link>
+          <div className="pn-modal__cta">
+            <Link
+              className="pn-btn pn-btn--primary"
+              href={`/contatti?tipoEvento=${encodeURIComponent(item.title)}`}
+              onClick={onClose}
+            >
+              Richiedi info
+            </Link>
 
-  <Link className="pn-btn pn-btn--ghost" href="/gallery" onClick={onClose}>
-    Vedi esempi
-  </Link>
-</div>
-
+            <Link className="pn-btn pn-btn--ghost" href="/gallery" onClick={onClose}>
+              Vedi esempi
+            </Link>
+          </div>
         </div>
       </div>
     </div>
