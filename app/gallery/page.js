@@ -6,10 +6,10 @@ import "./gallery.css";
 export const dynamic = "force-static";
 
 const CATEGORIES = [
-  { key: "eventi-privati", label: "Eventi Privati" },
+  { key: "eventi-privati", label: "Cerimonie" },
   { key: "eventi-bambini", label: "Eventi per Bambini" },
   { key: "compleanni", label: "Compleanni" },
-  { key: "animazione", label: "Animazione" },
+  { key: "animazione", label: "Animazione e Spettacoli" },
   { key: "eventi-aziendali", label: "Eventi Aziendali e Promozionali" },
   { key: "allestimenti-servizi", label: "Allestimenti e Servizi" },
 ];

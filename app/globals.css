@@ -595,7 +595,8 @@ main{ padding-top: 0; }
   flex-wrap: wrap;
 }
 
-.pn-btn{
+/* Bottoni SOLO dentro il modal */
+.pn-modal .pn-btn{
   height: 44px;
   padding: 0 14px;
   border-radius: 999px;
@@ -606,16 +607,18 @@ main{ padding-top: 0; }
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.06);
   color: rgba(255,255,255,.92);
+  cursor: pointer;
 }
 
-.pn-btn--primary{
-  background: rgba(255,255,255,.14);
-  border-color: rgba(255,255,255,.22);
+.pn-modal .pn-btn--primary{
+  background: rgba(207,29,116,0.92);
+  border-color: rgba(207,29,116,1);
 }
 
-.pn-btn--ghost{
+.pn-modal .pn-btn--ghost{
   background: transparent;
 }
+
 /* =========================================
    PARTYNERS – GALLERY ROSA + GLASS EFFECT
    ========================================= */
@@ -652,4 +655,88 @@ main{ padding-top: 0; }
 .pn-gallery > *{
   position: relative;
   z-index: 1;
+}
+
+/* =========================================
+   EVENTI – IMMAGINI ADAPTIVE (PORTRAIT SAFE)
+   - foreground: contain (mai crop)
+   - background: stessa immagine blurred (riempie, look premium)
+   ========================================= */
+
+/* ===== MODAL HERO ===== */
+.pn-modal__hero{
+  position: relative;
+  width: 100%;
+
+  /* invece di aspect-ratio fisso: altezza adattiva */
+  height: clamp(240px, 46vh, 560px);
+
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  /* fallback */
+  background: rgba(255,255,255,0.03);
+}
+
+/* sfondo blur */
+.pn-modal__hero::before{
+  content:"";
+  position:absolute;
+  inset:-12%;
+  background-image: var(--pn-modal-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) saturate(1.1);
+  transform: scale(1.12);
+  opacity: .55;
+}
+
+/* immagine “vera” sopra, sempre intera */
+.pn-modal__heroImg{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ===== CARD COVER (griglia eventi) ===== */
+.pn-card__media{
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+/* blur fill */
+.pn-card__media::before{
+  content:"";
+  position:absolute;
+  inset:-18%;
+  background-image: var(--pn-card-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) saturate(1.1);
+  transform: scale(1.18);
+  opacity: .55;
+}
+
+/* foreground contain */
+.pn-card__img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform .35s ease, filter .35s ease;
+}
+
+/* hover leggero */
+.pn-card:hover .pn-card__img{
+  transform: scale(1.06);
+  filter: saturate(1.08) contrast(1.05);
 }

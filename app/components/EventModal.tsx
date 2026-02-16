@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { EventCategory } from "../data/events";
+import Link from "next/link";
 
 export default function EventModal({
   item,
@@ -102,14 +103,20 @@ export default function EventModal({
             ))}
           </div>
 
-          <div className="pn-modal__cta">
-            <a className="pn-btn pn-btn--primary" href="#contatti">
-              Richiedi info
-            </a>
-            <a className="pn-btn pn-btn--ghost" href="#portfolio">
-              Vedi esempi
-            </a>
-          </div>
+<div className="pn-modal__cta">
+  <Link
+    className="pn-btn pn-btn--primary"
+    href={`/contatti?tipoEvento=${encodeURIComponent(item.title)}`}
+    onClick={onClose}
+  >
+    Richiedi info
+  </Link>
+
+  <Link className="pn-btn pn-btn--ghost" href="/gallery" onClick={onClose}>
+    Vedi esempi
+  </Link>
+</div>
+
         </div>
       </div>
     </div>
