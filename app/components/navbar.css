@@ -366,14 +366,23 @@ body[data-path="/"] .pn-navbar:not(.is-scrolled) .pn-brand__logo{
   position: relative;
   z-index: 2;
 
-  margin: 14px;
+  width: min(92%, 420px);   /* ✅ larghezza controllata */
+  margin-left: auto;        /* ✅ centratura perfetta */
+  margin-right: auto;
+
   margin-top: calc(
-    var(--pn-nav-h) + env(safe-area-inset-top) + 10px
-  );                        /* ✅ non si nasconde più "Eventi" */
+    var(--pn-nav-h) + env(safe-area-inset-top) + 16px
+  );
+
+  padding: 26px 22px 24px;
 
   max-height: calc(
-    100dvh - (var(--pn-nav-h) + env(safe-area-inset-top) + 28px)
+    100dvh - (var(--pn-nav-h) + env(safe-area-inset-top) + 32px)
   );
-  overflow: auto;           /* ✅ se lista lunga, scrolla */
+
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
+}
+.pn-mobile__panel{
+  border-radius: 28px;
 }
