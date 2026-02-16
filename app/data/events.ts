@@ -16,12 +16,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Cerimonie",
     tagline: "Momenti di vita, curati in ogni dettaglio.",
     cover: "/assets/events/eventi-privati/cover.jpg",
-    gallery: [
-      "/assets/events/eventi-privati/1.jpg",
-      "/assets/events/eventi-privati/2.jpg",
-      "/assets/events/eventi-privati/3.jpg",
-      "/assets/events/eventi-privati/4.jpg",
-    ],
+gallery: [
+  "/assets/events/eventi-privati/gallery/1.jpeg",
+  "/assets/events/eventi-privati/gallery/2.jpeg",
+  "/assets/events/eventi-privati/gallery/3.jpeg",
+  "/assets/events/eventi-privati/gallery/4.jpeg",
+  "/assets/events/eventi-privati/gallery/5.jpeg",
+],
+
     subcategories: [
       "Matrimonio",
       "Nascita",
@@ -42,12 +44,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Compleanni & Party",
     tagline: "Dai baby ai 50+: qui si festeggia sul serio.",
     cover: "/assets/events/compleanni-party/cover.jpg",
-    gallery: [
-      "/assets/events/compleanni-party/1.jpg",
-      "/assets/events/compleanni-party/2.jpg",
-      "/assets/events/compleanni-party/3.jpg",
-      "/assets/events/compleanni-party/4.jpg",
-    ],
+gallery: [
+  "/assets/events/compleanni-party/gallery/1.jpeg",
+  "/assets/events/compleanni-party/gallery/2.jpeg",
+  "/assets/events/compleanni-party/gallery/3.jpeg",
+  "/assets/events/compleanni-party/gallery/4.jpeg",
+  "/assets/events/compleanni-party/gallery/5.jpeg",
+],
+
     subcategories: [
       "Compleanni Baby (1–10)",
       "Compleanni Teen (11–17)",
@@ -66,12 +70,13 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Eventi Aziendali & Promozionali",
     tagline: "Business, brand e intrattenimento, senza noia.",
     cover: "/assets/events/aziendali-promozionali/cover.jpg",
-    gallery: [
-      "/assets/events/aziendali-promozionali/1.jpg",
-      "/assets/events/aziendali-promozionali/2.jpg",
-      "/assets/events/aziendali-promozionali/3.jpg",
-      "/assets/events/aziendali-promozionali/4.jpg",
-    ],
+gallery: [
+  "/assets/events/aziendali-promozionali/gallery/1.jpeg",
+  "/assets/events/aziendali-promozionali/gallery/2.jpeg",
+  "/assets/events/aziendali-promozionali/gallery/3.jpeg",
+
+],
+
     subcategories: [
       "Eventi Aziendali",
       "Eventi Corporate",
@@ -90,12 +95,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Eventi per Bambini",
     tagline: "Non solo compleanni: eventi kids-friendly ovunque.",
     cover: "/assets/events/eventi-bambini/cover.jpg",
-    gallery: [
-      "/assets/events/eventi-bambini/1.jpg",
-      "/assets/events/eventi-bambini/2.jpg",
-      "/assets/events/eventi-bambini/3.jpg",
-      "/assets/events/eventi-bambini/4.jpg",
-    ],
+gallery: [
+  "/assets/events/eventi-bambini/gallery/1.jpeg",
+  "/assets/events/eventi-bambini/gallery/2.jpeg",
+  "/assets/events/eventi-bambini/gallery/3.jpeg",
+  "/assets/events/eventi-bambini/gallery/4.jpeg",
+  "/assets/events/eventi-bambini/gallery/5.jpeg",
+],
+
     subcategories: [
       "Feste per Bambini",
       "Eventi Scolastici",
@@ -111,12 +118,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Animazione e Spettacoli",
     tagline: "Performance che trasformano un evento in esperienza.",
     cover: "/assets/events/animazione/cover.jpg",
-    gallery: [
-      "/assets/events/animazione/1.jpg",
-      "/assets/events/animazione/2.jpg",
-      "/assets/events/animazione/3.jpg",
-      "/assets/events/animazione/4.jpg",
-    ],
+gallery: [
+  "/assets/events/animazione/gallery/1.jpeg",
+  "/assets/events/animazione/gallery/2.jpeg",
+  "/assets/events/animazione/gallery/3.jpeg",
+  "/assets/events/animazione/gallery/4.jpeg",
+  "/assets/events/animazione/gallery/5.jpeg",
+],
+
     subcategories: [
       "Mascotte",
       "Spettacoli",
@@ -135,12 +144,14 @@ export const EVENT_CATEGORIES: EventCategory[] = [
     title: "Allestimenti & Servizi",
     tagline: "Estetica, scenografie e service: l’effetto WOW.",
     cover: "/assets/events/allestimenti-servizi/cover.jpg",
-    gallery: [
-      "/assets/events/allestimenti-servizi/1.jpg",
-      "/assets/events/allestimenti-servizi/2.jpg",
-      "/assets/events/allestimenti-servizi/3.jpg",
-      "/assets/events/allestimenti-servizi/4.jpg",
-    ],
+   gallery: [
+  "/assets/events/allestimenti-servizi/gallery/1.jpeg",
+  "/assets/events/allestimenti-servizi/gallery/2.jpeg",
+  "/assets/events/allestimenti-servizi/gallery/3.jpeg",
+  "/assets/events/allestimenti-servizi/gallery/4.jpeg",
+  "/assets/events/allestimenti-servizi/gallery/5.jpeg",
+],
+
     subcategories: [
       "Allestimenti Tematici",
       "Balloon Art",
