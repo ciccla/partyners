@@ -232,103 +232,7 @@
     background: rgba(0,0,0,0.06);
   }
 }
-/* =========================
-   MOBILE MENU: fullscreen animato (no display none)
-   ========================= */
-.pn-mobile{
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  pointer-events: none;
-}
 
-.pn-mobile__backdrop{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: rgba(0,0,0,0.55);
-  opacity: 0;
-  transition: opacity .28s ease;
-}
-
-.pn-mobile__panel{
-  position: absolute;
-  left: 12px;
-  right: 12px;
-
-  /* ✅ panel proporzionato ai contenuti */
-  height: fit-content;
-  max-height: calc(100svh - (70px + env(safe-area-inset-top) + 24px));
-  overflow: auto; /* scroll solo se supera max-height */
-
-  overflow: auto;
-
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: transform .28s ease, opacity .28s ease;
-
-  /* coerente con Partyners (nero + rosa) */
-  background: linear-gradient(
-    160deg,
-    rgba(7,7,11,0.92) 0%,
-    rgba(18,8,21,0.92) 55%,
-    rgba(192,23,101,0.30) 140%
-  );
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  border-radius: 18px;
-  padding: 14px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.pn-mobile__panel a{
-  text-decoration: none !important;
-  font-weight: 800;
-  color: rgba(255,255,255,0.92);
-
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-
-  padding: 10px 12px;
-  border-radius: 14px;
-}
-
-.pn-mobile__panel a:hover{
-  background: rgba(255,255,255,0.10);
-}
-
-.pn-mobile__cta{
-  margin-top: 6px;
-  display: inline-flex;
-  justify-content: center;
-  padding: 12px 14px;
-  border-radius: 999px;
-  background: var(--pn-pink);
-  color: #fff !important;
-  font-weight: 900;
-}
-
-/* stato aperto */
-.pn-mobile.open{
-  pointer-events: auto;
-}
-
-.pn-mobile.open .pn-mobile__backdrop{
-  opacity: 1;
-}
-
-.pn-mobile.open .pn-mobile__panel{
-  transform: translateY(0);
-  opacity: 1;
-}
 /* ===============================
    HOME TOP-STATE: logo navbar nascosto
    =============================== */
@@ -337,52 +241,105 @@ body[data-path="/"] .pn-navbar:not(.is-scrolled) .pn-brand__logo{
   transform: translateY(-8px) scale(0.98);
   pointer-events: none;
 }
-/* ===============================
-   FIX MOBILE MENU (iOS safe-area)
-   - il menu copre tutto lo schermo
-   - il pannello parte sotto la navbar
-   =============================== */
 
-:root{
-  --pn-nav-h: 86px; /* altezza navbar */
-}
+/* =========================
+   MOBILE MENU (definitivo)
+   - overlay full screen
+   - panel allineato al container navbar mobile
+   ========================= */
 
-/* il contenitore menu copre tutto (non parte più da 86px) */
-.pn-mobile.open{
-  display: block;
-  position: fixed;
-  inset: 0;                 /* ✅ full screen */
-  z-index: 2000;            /* ✅ sopra tutto (anche navbar) */
-}
+@media (max-width: 980px){
+  :root{ --pn-nav-h: 70px; } /* stessa altezza della navbar mobile */
 
-/* backdrop full screen */
-.pn-mobile__backdrop{
-  position: absolute;
-  inset: 0;                 /* ✅ full screen */
-}
+  .pn-mobile{
+    position: fixed;
+    inset: 0;
+    z-index: 2000;           /* sopra la navbar */
+    pointer-events: none;
+  }
 
-/* pannello spinto sotto la navbar + safe area */
-.pn-mobile__panel{
-  position: relative;
-  z-index: 2;
+  .pn-mobile.open{
+    pointer-events: auto;
+  }
 
-  width: min(92%, 420px);   /* ✅ larghezza controllata */
-  margin-left: auto;        /* ✅ centratura perfetta */
-  margin-right: auto;
+  .pn-mobile__backdrop{
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    transition: opacity .28s ease;
+  }
 
-  margin-top: calc(
-    var(--pn-nav-h) + env(safe-area-inset-top) + 16px
-  );
+  .pn-mobile.open .pn-mobile__backdrop{
+    opacity: 1;
+  }
 
-  padding: 26px 22px 24px;
+  /* ✅ PANEL: stessa larghezza del container navbar (calc(100% - 24px)) */
+  .pn-mobile__panel{
+    position: absolute;
+    left: 0;
+    right: 0;
 
-  max-height: calc(
-    100dvh - (var(--pn-nav-h) + env(safe-area-inset-top) + 32px)
-  );
+    width: calc(100% - 24px);
+    margin: 0 auto;
 
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.pn-mobile__panel{
-  border-radius: 28px;
+    margin-top: calc(var(--pn-nav-h) + env(safe-area-inset-top) + 12px);
+
+    padding: 20px;
+    border-radius: 28px;
+
+    background: linear-gradient(
+      160deg,
+      rgba(7,7,11,0.92) 0%,
+      rgba(18,8,21,0.92) 55%,
+      rgba(192,23,101,0.30) 140%
+    );
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-height: calc(100dvh - (var(--pn-nav-h) + env(safe-area-inset-top) + 24px));
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform .28s ease, opacity .28s ease;
+  }
+
+  .pn-mobile.open .pn-mobile__panel{
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .pn-mobile__panel a{
+    text-decoration: none !important;
+    font-weight: 800;
+    color: rgba(255,255,255,0.92);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .pn-mobile__panel a:hover{
+    background: rgba(255,255,255,0.10);
+  }
+
+  .pn-mobile__cta{
+    margin-top: 6px;
+    display: inline-flex;
+    justify-content: center;
+    padding: 12px 14px;
+    border-radius: 999px;
+    background: var(--pn-pink);
+    color: #fff !important;
+    font-weight: 900;
+  }
 }
