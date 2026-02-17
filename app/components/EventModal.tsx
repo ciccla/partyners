@@ -99,20 +99,24 @@ export default function EventModal({
           </div>
         </div>
 
-        {/* Info */}
+               {/* Info */}
         <div className="pn-modal__info">
-          <div className="pn-modal__kicker">Categoria</div>
-          <h3 className="pn-modal__title">{item.title}</h3>
-          <p className="pn-modal__desc">{item.description}</p>
+          {/* ✅ CONTENT scrollabile */}
+          <div className="pn-modal__content">
+            <div className="pn-modal__kicker">Categoria</div>
+            <h3 className="pn-modal__title">{item.title}</h3>
+            <p className="pn-modal__desc">{item.description}</p>
 
-          <div className="pn-pills">
-            {item.highlights.map((h) => (
-              <span key={h} className="pn-pill">
-                {h}
-              </span>
-            ))}
+            <div className="pn-pills">
+              {item.highlights.map((h) => (
+                <span key={h} className="pn-pill">
+                  {h}
+                </span>
+              ))}
+            </div>
           </div>
 
+          {/* ✅ CTA ancorata sotto (non scrolla, non overlay) */}
           <div className="pn-modal__cta">
             <Link
               className="pn-btn pn-btn--primary"
@@ -122,11 +126,16 @@ export default function EventModal({
               Richiedi info
             </Link>
 
-            <Link className="pn-btn pn-btn--ghost" href="/gallery" onClick={onClose}>
+            <Link
+              className="pn-btn pn-btn--ghost"
+              href="/gallery"
+              onClick={onClose}
+            >
               Vedi esempi
             </Link>
           </div>
         </div>
+
       </div>
     </div>
   );

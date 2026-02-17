@@ -834,58 +834,54 @@ main{ padding-top: 0; }
   }
 }
 /* =========================
-   EVENT MODAL – CTA VISIBILE SU MOBILE (FIX REALE)
+   EVENT MODAL – INFO SCROLL + CTA ANCORATA SOTTO
    ========================= */
 
-@media (max-width: 920px){
-  /* su mobile: panel in colonna e info scrollabile */
-  .pn-modal__panel{
-    display: flex !important;
-    flex-direction: column !important;
-    max-height: calc(100svh - 24px);
-    overflow: hidden;
-  }
+.pn-modal__info{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* importantissimo */
+  min-height: 0;    /* ✅ fix flex overflow in tanti browser */
+}
 
-  .pn-modal__gallery{
-    flex: 0 0 auto;
-  }
+.pn-modal__content{
+  flex: 1 1 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0;    /* ✅ idem */
+}
 
-  .pn-modal__info{
-    flex: 1 1 auto;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+.pn-modal__cta{
+  flex: 0 0 auto;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 
-    /* spazio per la barra CTA sticky */
-    padding-bottom: 92px;
-  }
+  margin-top: 14px;
+  padding-top: 14px;
 
-  /* ✅ CTA sempre visibile in basso */
-  .pn-modal__cta{
-    position: sticky;
-    bottom: 0;
-    z-index: 3;
+  border-top: 1px solid rgba(255,255,255,.10);
+  background: rgba(15,15,20,.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
-    margin-top: 10px;
-    padding: 12px 0;
+/* bottoni sempre dentro */
+.pn-modal__cta a{
+  flex: 1 1 220px;
+  min-width: 0;
+}
 
-    background: rgba(15,15,20,.92);
-    border-top: 1px solid rgba(255,255,255,.10);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  /* ✅ bottoni: 2 colonne */
-  .pn-modal__cta a,
-  .pn-modal__cta button{
-    flex: 1 1 calc(50% - 5px);
-    min-width: 0;
+/* mobile: 2 colonne */
+@media (max-width: 560px){
+  .pn-modal__cta a{
+    flex: 1 1 calc(50% - 6px);
   }
 }
 
+/* extra small: 1 colonna */
 @media (max-width: 380px){
-  /* ✅ schermi stretti: 1 colonna */
-  .pn-modal__cta a,
-  .pn-modal__cta button{
+  .pn-modal__cta a{
     flex: 1 1 100%;
   }
 }
