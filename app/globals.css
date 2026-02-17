@@ -834,38 +834,58 @@ main{ padding-top: 0; }
   }
 }
 /* =========================
-   MODAL CTA (BOTTONI) FIX
+   EVENT MODAL – CTA VISIBILE SU MOBILE (FIX REALE)
    ========================= */
 
-.pn-modal__actions{
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;           /* ✅ permette di andare a capo */
-}
-
-/* i bottoni non devono “spingere fuori” */
-.pn-modal__actions > a,
-.pn-modal__actions > button{
-  flex: 1 1 220px;           /* ✅ base 220px, poi si adatta */
-  min-width: 0;              /* ✅ evita overflow nei flex items */
-}
-
-/* Mobile: 2 bottoni che rientrano SEMPRE */
-@media (max-width: 560px){
-  .pn-modal__actions{
-    gap: 10px;
+@media (max-width: 920px){
+  /* su mobile: panel in colonna e info scrollabile */
+  .pn-modal__panel{
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: calc(100svh - 24px);
+    overflow: hidden;
   }
 
-  .pn-modal__actions > a,
-  .pn-modal__actions > button{
-    flex: 1 1 calc(50% - 5px); /* ✅ due colonne */
+  .pn-modal__gallery{
+    flex: 0 0 auto;
+  }
+
+  .pn-modal__info{
+    flex: 1 1 auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* spazio per la barra CTA sticky */
+    padding-bottom: 92px;
+  }
+
+  /* ✅ CTA sempre visibile in basso */
+  .pn-modal__cta{
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+
+    margin-top: 10px;
+    padding: 12px 0;
+
+    background: rgba(15,15,20,.92);
+    border-top: 1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* ✅ bottoni: 2 colonne */
+  .pn-modal__cta a,
+  .pn-modal__cta button{
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
   }
 }
 
-/* Extra-small: se lo schermo è davvero stretto, 1 colonna */
 @media (max-width: 380px){
-  .pn-modal__actions > a,
-  .pn-modal__actions > button{
+  /* ✅ schermi stretti: 1 colonna */
+  .pn-modal__cta a,
+  .pn-modal__cta button{
     flex: 1 1 100%;
   }
 }
