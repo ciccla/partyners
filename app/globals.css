@@ -921,3 +921,23 @@ main{ padding-top: 0; }
     flex: 1 1 100%;
   }
 }
+/* =========================
+   FIX SCROLL MODAL (FLEX + overflow)
+   ========================= */
+
+.pn-modal__panel{
+  max-height: calc(100svh - 24px);
+}
+
+.pn-modal__info{
+  flex: 1 1 auto;
+  min-height: 0;   /* ✅ fondamentale: abilita lo scroll nel figlio */
+  overflow: hidden;
+}
+
+.pn-modal__content{
+  flex: 1 1 auto;
+  min-height: 0;   /* ✅ fondamentale */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
