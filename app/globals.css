@@ -467,18 +467,29 @@ main{ padding-top: 0; }
 
 .pn-modal__close{
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;              /* ✅ elimina offset */
+  line-height: 0;          /* ✅ elimina baseline text */
   border-radius: 999px;
+
   border: 1px solid rgba(255,255,255,.16);
   background: rgba(255,255,255,.06);
   color: rgba(255,255,255,.92);
+
   display: grid;
-  place-items: center;
+  place-items: center;     /* ✅ centro matematico */
   cursor: pointer;
 }
+
+.pn-modal__close svg{
+  display: block;          /* ✅ niente inline weirdness */
+}
+
 
 .pn-modal__gallery{
   padding: 16px;
@@ -758,4 +769,67 @@ main{ padding-top: 0; }
 .pn-card:hover .pn-card__media{
   transform: scale(1.08);
   filter: saturate(1.14) contrast(1.10);
+}
+/* ================================
+   EVENTS MODAL – FIX MOBILE LAYOUT
+   ================================ */
+
+/* Overlay: su mobile deve poter scrollare */
+.pn-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: grid;
+  place-items: start center;       /* ✅ non più center verticale: evita tagli */
+  overflow: auto;                  /* ✅ scroll se contenuto alto */
+
+  /* ✅ padding safe-area */
+  padding:
+    max(12px, env(safe-area-inset-top))
+    12px
+    max(12px, env(safe-area-inset-bottom));
+}
+
+/* Pannello: non deve mai superare il viewport */
+.pn-modal__panel{
+  position: relative;
+  width: min(1080px, 100%);
+
+  max-height: calc(100svh - 24px); /* ✅ dentro il viewport (mobile safe) */
+  overflow: hidden;                /* ✅ niente “sbordamenti” */
+
+  border-radius: 22px;
+  background: rgba(15,15,20,.92);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 30px 90px rgba(0,0,0,.55);
+
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+}
+
+/* Desktop/tablet: ok così */
+@media (max-width: 920px){
+  /* Mobile: colonna + info scrollabile */
+  .pn-modal__panel{
+    grid-template-columns: 1fr;
+  }
+
+  .pn-modal__gallery{
+    padding: 14px;
+  }
+
+  /* ✅ la parte info deve poter scrollare */
+  .pn-modal__info{
+    max-height: calc(100svh - 360px); /* fallback: limita l’altezza */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Suggerimento: rendi la hero un filo meno alta su mobile */
+@media (max-width: 560px){
+  .pn-modal__hero{
+    aspect-ratio: 16 / 11; /* era 16/10: leggermente meno “alta” */
+  }
 }
