@@ -833,3 +833,39 @@ main{ padding-top: 0; }
     aspect-ratio: 16 / 11; /* era 16/10: leggermente meno “alta” */
   }
 }
+/* =========================
+   MODAL CTA (BOTTONI) FIX
+   ========================= */
+
+.pn-modal__actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;           /* ✅ permette di andare a capo */
+}
+
+/* i bottoni non devono “spingere fuori” */
+.pn-modal__actions > a,
+.pn-modal__actions > button{
+  flex: 1 1 220px;           /* ✅ base 220px, poi si adatta */
+  min-width: 0;              /* ✅ evita overflow nei flex items */
+}
+
+/* Mobile: 2 bottoni che rientrano SEMPRE */
+@media (max-width: 560px){
+  .pn-modal__actions{
+    gap: 10px;
+  }
+
+  .pn-modal__actions > a,
+  .pn-modal__actions > button{
+    flex: 1 1 calc(50% - 5px); /* ✅ due colonne */
+  }
+}
+
+/* Extra-small: se lo schermo è davvero stretto, 1 colonna */
+@media (max-width: 380px){
+  .pn-modal__actions > a,
+  .pn-modal__actions > button{
+    flex: 1 1 100%;
+  }
+}

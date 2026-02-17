@@ -21,6 +21,20 @@ function esc(v) {
     .replace(/"/g, "&quot;");
 }
 
+function digitsOnly(v) {
+  return String(v || "").replace(/[^\d]/g, "");
+}
+
+function toWaNumber(phone) {
+  // accetta "339 123..." "+39..." "0039..." ecc
+  let d = digitsOnly(phone);
+  if (!d) return "";
+  if (d.startsWith("00")) d = d.slice(2); // 0039 -> 39
+  // se non ha prefisso, assumo Italia
+  if (!d.startsWith("39")) d = "39" + d;
+  return d;
+}
+
 function fieldRow(label, value) {
   if (!value) return "";
   return `
@@ -48,7 +62,9 @@ function baseShell({ title, subtitle, content, footerNote }) {
       <div style="max-width:680px;margin:0 auto;padding:0 24px;">
         <div style="background:${BRAND.cardDark};border:1px solid #212631;border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,.5)">
           <h1 style="margin:0 0 8px 0;font-size:28px;line-height:1.25;color:#ffffff;">${esc(title)}</h1>
-          <p style="margin:0 0 18px 0;color:#a9b4c4;font-size:15px;line-height:1.6">${esc(subtitle || "")}</p>
+          <p style="margin:0 0 18px 0;color:#a9b4c4;font-size:15px;line-height:1.6">${esc(
+            subtitle || ""
+          )}</p>
           ${content}
           <div style="margin-top:26px;border-top:1px dashed #2a3140;padding-top:18px;color:#93a1b6;font-size:12px;line-height:1.6">
             ${footerNote || ""}
@@ -67,11 +83,45 @@ function baseShell({ title, subtitle, content, footerNote }) {
 }
 
 function emailToOffice(data) {
+  // CTA links
+  const customerEmail = data.email ? String(data.email).trim() : "";
+  const waNumber = toWaNumber(data.telefono);
+
+  const mailto = customerEmail
+    ? `mailto:${encodeURIComponent(customerEmail)}?subject=${encodeURIComponent(
+        `Re: richiesta Partyners — ${data.tipo_evento || "Info"}`
+      )}`
+    : "";
+
+  const waText = encodeURIComponent(
+    `Ciao ${data.nome || ""}! 😊\nHo visto la tua richiesta su Partyners.\n` +
+      `${data.tipo_evento ? `Tipo evento: ${data.tipo_evento}\n` : ""}` +
+      `${data.data_evento ? `Data: ${data.data_evento}\n` : ""}` +
+      `\nTi va di darmi qualche dettaglio in più?`
+  );
+
+  const waUrl = waNumber ? `https://wa.me/${waNumber}?text=${waText}` : "";
+
   const table = `
     <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border:1px solid #232832;border-radius:14px;overflow:hidden">
       ${fieldRow("Nome", data.nome)}
       ${fieldRow("Cognome", data.cognome)}
-      ${fieldRow("Email", data.email)}
+
+      ${
+        customerEmail
+          ? `<tr>
+              <td style="padding:12px 16px;border-bottom:1px solid #232832;color:#cdd6e5;width:42%;font-weight:700;">Email</td>
+              <td style="padding:12px 16px;border-bottom:1px solid #232832;color:#e6edf7;">
+                <a href="mailto:${esc(
+                  customerEmail
+                )}" style="color:#8ab4f8;text-decoration:none;">${esc(
+              customerEmail
+            )}</a>
+              </td>
+            </tr>`
+          : ""
+      }
+
       ${fieldRow("Telefono", data.telefono)}
       ${fieldRow("Tipo evento", data.tipo_evento)}
       ${fieldRow("Data evento", data.data_evento)}
@@ -81,17 +131,45 @@ function emailToOffice(data) {
         data.messaggio
           ? `<tr><td colspan="2" style="padding:16px;border-top:1px solid #232832;color:#cdd6e5;">
               <div style="font-weight:700;margin-bottom:6px;">Messaggio</div>
-              <div style="white-space:pre-wrap;color:#e6edf7;line-height:1.7">${esc(data.messaggio)}</div>
+              <div style="white-space:pre-wrap;color:#e6edf7;line-height:1.7">${esc(
+                data.messaggio
+              )}</div>
             </td></tr>`
           : ""
       }
     </table>
   `;
 
+  const actions = `
+    <div style="margin-top:18px;padding-top:16px;border-top:1px dashed #2a3140;text-align:center;">
+      ${
+        waUrl
+          ? `<a href="${waUrl}"
+               target="_blank"
+               rel="noopener noreferrer"
+               style="display:inline-block;margin:6px 8px;padding:12px 18px;border-radius:999px;background:#25D366;color:#fff;text-decoration:none;font-weight:800;">
+               💬 Apri WhatsApp del cliente
+             </a>`
+          : ""
+      }
+      ${
+        mailto
+          ? `<a href="${mailto}"
+               style="display:inline-block;margin:6px 8px;padding:12px 18px;border-radius:999px;background:#3b82f6;color:#fff;text-decoration:none;font-weight:800;">
+               ✉️ Rispondi via Email
+             </a>`
+          : ""
+      }
+      <div style="margin-top:10px;color:#93a1b6;font-size:12px;line-height:1.6">
+        Puoi contattare direttamente il cliente cliccando sui pulsanti sopra.
+      </div>
+    </div>
+  `;
+
   return baseShell({
     title: `Nuova richiesta da ${data.nome || ""} ${data.cognome || ""}`,
     subtitle: "Hai ricevuto una nuova richiesta dal sito Partyners.",
-    content: table,
+    content: table + actions,
     footerNote:
       "Puoi rispondere direttamente usando l'email del cliente (reply-to impostato).",
   });
@@ -154,6 +232,7 @@ export async function POST(req) {
       to: [to],
       subject: `📩 Nuova richiesta — Partyners`,
       html: emailToOffice(data),
+      // se non funziona nel tuo SDK, dimmelo e lo switchiamo a replyTo
       reply_to: data.email ? [data.email] : undefined,
     });
 
