@@ -35,7 +35,7 @@ gallery: [
       "Laurea",
       "Anniversari",
     ],
-    highlights: ["Matrimonio", "Comunione", "Cresima", "Laurea", "Anniversari"],
+    highlights: ["Matrimonio", "Battesimo", "Comunione", "Cresima", "Laurea", "Anniversari"],
     description:
       "Eventi personali e familiari progettati su misura: stile, organizzazione e coordinamento completo, dal concept al giorno dell’evento.",
   },
@@ -61,7 +61,7 @@ gallery: [
       "50° Compleanno",
       "Party Adulti",
     ],
-    highlights: ["Musica", "Drink & food", "Allestimento", "18° Compleanno", "feste a tema"],
+    highlights: ["Musica", "Drink & food", "Allestimento", "feste a tema", "18° Compleanno", "30°/40°/50° Compleanno", ],
     description:
       "Feste di compleanno e party per ogni età: mood, musica, setup e gestione completa. Tu scegli lo stile, noi realizziamo l’esperienza.",
   },
@@ -160,7 +160,7 @@ gallery: [
       "Service Audio & Luci",
       "Decorazioni",
     ],
-    highlights: ["Balloon Art", "Materiali", "Noleggio Attrezzature", "Service Audio & Luci"],
+    highlights: ["Balloon Art", "Flower Design", "Materiali", "Noleggio Attrezzature", "Service Audio & Luci"],
     description:
       "Allestimenti e servizi anche singoli: balloon art, scenografie, decorazioni e noleggi. Perfetto se vuoi elevare un evento già esistente.",
   },
