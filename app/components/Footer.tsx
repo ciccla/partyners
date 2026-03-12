@@ -29,7 +29,7 @@ export default function Footer() {
 
           <div className="pn-footer__social">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/party.ners"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
